@@ -26,7 +26,7 @@ body{
 #title{
     text-align: center;
     font-size: 3em;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); /* X-offset, Y-offset, Blur, Color */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
 }
 
 
