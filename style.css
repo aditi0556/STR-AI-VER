@@ -1,0 +1,93 @@
+body{
+    background-color:  #F5D7BF;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+.container{
+    display: flex;
+    flex-direction: row;
+    background-color: #F5D7BF;
+    justify-content: space-between;
+}
+
+.box{
+    background-color: aliceblue;
+    align-self: center;
+    height: 5em;
+    width: 100%;
+    padding: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#title{
+    text-align: center;
+    font-size: 3em;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); /* X-offset, Y-offset, Blur, Color */
+}
+
+
+.info{
+    height: px;
+    /* width: 30%; */
+    /* background-color: #F5D7BF; */
+}
+
+
+.Personal-Info,.skills,.languages{
+    margin: 2em;
+    padding: 1em;
+    padding-top: 0.5em;
+    border-radius:1em ;
+    width: 25em;
+    background-color:aliceblue ;
+    
+}
+
+.linkedIN{
+    text-decoration: none;
+    color: black;;
+}
+
+.linkedIN:hover{
+    color: blue;
+    font-weight: 500;
+}
+
+.education,.experience{
+    margin: 2em;
+    padding: 1em;
+    padding-top: 0.5em;
+    border-radius:1em ;
+    width: 35em;
+    background-color:aliceblue ;
+    font-weight: 600;
+    
+}
+
+.edu{
+    font-size: 1.1em;
+}
+
+.aim{
+    margin: 2em;
+    padding: 1em;
+    padding-top: 0.5em;
+    border-radius:1.0em ;
+    /* width: 40em; */
+    font-weight: 600;
+    background-color:aliceblue;
+}
+
+.goal,.hobby{
+    font-size: 1.1em;
+    
+}
+.hobbies{
+    padding: 1em;
+}
+
+
