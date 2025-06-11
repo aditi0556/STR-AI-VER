@@ -93,7 +93,7 @@ body{
 @media (max-width:935px) {
     .container {
         flex-wrap: wrap;
-        justify-content: space-between;
+        justify-content: center;
         word-wrap: break-word;
     }
 } 
