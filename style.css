@@ -3,46 +3,47 @@ body{
     font-family: "Plus Jakarta Sans", sans-serif;
     font-optical-sizing: auto;
     font-style: normal;
+    overflow-x: hidden;
 }
 
 .container{
     display: flex;
     flex-direction: row;
     background-color: #F5D7BF;
-    justify-content: space-between;
+    justify-content: space-evenly;
+    width: 100%;
 }
 
 .box{
-    background-color: aliceblue;
-    align-self: center;
-    height: 5em;
-    width: 100%;
-    padding: 1em;
     display: flex;
+    background-color: aliceblue;
+    display: flex;
+    height: 5em;
+    padding: 1em;
     align-items: center;
     justify-content: center;
 }
 
-#title{
-    text-align: center;
+
+#title {
+    margin: 0 auto;
+    display: block;
     font-size: 3em;
+    text-align: center;
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
 }
 
-
-.info{
-    height: px;
-    /* width: 30%; */
-    /* background-color: #F5D7BF; */
+.exp,.info,.aim {
+    flex: 1 1 40%;
+    max-width: 80%;
 }
-
 
 .Personal-Info,.skills,.languages{
     margin: 2em;
     padding: 1em;
     padding-top: 0.5em;
     border-radius:1em ;
-    width: 25em;
+    width: auto; 
     background-color:aliceblue ;
     
 }
@@ -62,7 +63,7 @@ body{
     padding: 1em;
     padding-top: 0.5em;
     border-radius:1em ;
-    width: 35em;
+    width: auto;
     background-color:aliceblue ;
     font-weight: 600;
     
@@ -72,18 +73,16 @@ body{
     font-size: 1.1em;
 }
 
-.aim{
-    margin: 2em;
-    padding: 1em;
-    padding-top: 0.5em;
-    border-radius:1.0em ;
-    /* width: 40em; */
-    font-weight: 600;
-    background-color:aliceblue;
-}
 
 .goal,.hobby{
     font-size: 1.1em;
+    margin: 2em;
+    padding: 1em;
+    padding-top: 0.5em;
+    border-radius: 1.0em;
+    width: auto;
+    font-weight: 600;
+    background-color: aliceblue;
     
 }
 .hobbies{
@@ -91,3 +90,10 @@ body{
 }
 
 
+@media (max-width:935px) {
+    .container {
+        flex-wrap: wrap;
+        justify-content: space-between;
+        word-wrap: break-word;
+    }
+} 
