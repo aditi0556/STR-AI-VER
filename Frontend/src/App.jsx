@@ -22,6 +22,7 @@ function App() {
           count is {count}
         </button>
         <h1>My first React App.</h1>
+        <h1>Hello I am Aditi Sinha</h1>
         <p>
           Edit <code>src/App.jsx</code> and save to test HMR
         </p>
