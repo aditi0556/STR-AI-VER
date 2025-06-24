@@ -3,7 +3,7 @@ import Language from "./Language.jsx";
 import { useState } from "react";
 import ReactMarkdown from "react-markdown";
 const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
-const ai = new GoogleGenAI({ apiKey: apiKey});
+const ai = new GoogleGenAI({ apiKey: apiKey });
 import { Button } from "@/components/ui/button";
 import { AuroraText } from "@/components/magicui/aurora-text";
 import Loader from "./Loader.jsx";
@@ -26,8 +26,8 @@ export default function Solve() {
   async function handleClick() {
     setLoading(true);
     try {
-      
-      if (input == "" || selectedLanguage=="") throw new Error("Please enter a valid question/or choose a language");
+      if (input == "" || selectedLanguage == "")
+        throw new Error("Please enter a valid question/or choose a language");
       const prompt = `This is my question ${input}.Give me hints for this question in  ${selectedLanguage}.Also return the code in proper format.Also for use bullet point and instead of ** use double or single quotes .`;
       console.log(selectedLanguage);
       const validity = ` Check whether this question "${input}" is a valid coding question or not .Answer in just true or false`;
@@ -36,13 +36,13 @@ export default function Solve() {
         contents: validity,
       });
       const validRes = valid.text;
-      if (validRes=="true") {
+      if (validRes == "true") {
         const res = await ai.models.generateContent({
-          model: "gemini-2.5-flash",
+          model: "gemini-2.0-flash",
           contents: prompt,
         });
         const ans = res.text;
-       
+
         setResponse(ans);
       } else {
         throw new Error(

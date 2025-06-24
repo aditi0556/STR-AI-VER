@@ -3,7 +3,7 @@ import Language from "./Language.jsx";
 import { useState } from "react";
 import ReactMarkdown from "react-markdown";
 const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
-const ai = new GoogleGenAI({ apiKey: apiKey});
+const ai = new GoogleGenAI({ apiKey: apiKey });
 import { Button } from "@/components/ui/button";
 import { AuroraText } from "@/components/magicui/aurora-text";
 import {
@@ -38,7 +38,7 @@ export default function Solve() {
       const validRes = valid.text;
       if (validRes == "true") {
         const res = await ai.models.generateContent({
-          model: "gemini-2.5-flash",
+          model: "gemini-2.0-flash",
           contents: prompt,
         });
         const ans = res.text;
@@ -99,7 +99,7 @@ export default function Solve() {
                       onClick={handleClick}
                       className="bg-blue-500 hover:size-lg hover:bg-blue-700 mx-1 text-white size-md"
                     >
-                      {loading ? <Loader /> : "Show Hints"}
+                      {loading ? <Loader /> : "Solve"}
                     </Button>
                   </div>
                 </ResizablePanel>

@@ -8,45 +8,59 @@ import Loader from "../CodeEditor/Loader.jsx";
 const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
 const ai = new GoogleGenAI({ apiKey: apiKey });
 
-
 export default function AiChat() {
   const [click, setClick] = useState(false);
   const [submit, setSubmit] = useState(false);
   const [change, setChange] = useState("");
-  const [response, setResponse] = useState("");
-  const [loading,setLoading]=useState(false);
+  const [response, setResponse] = useState([]);
+  const [history, setHistory] = useState([]);
+  const [loading, setLoading] = useState(false);
   function handleClick() {
     console.log(click);
     setClick((click) => {
       return !click;
     });
   }
-  function handleChange(e){
+
+  function handleChange(e) {
     setChange(e.target.val);
-    setChange("");
   }
+
   async function main() {
     setLoading(true);
     try {
       if (change != "") {
         const res = await ai.models.generateContent({
           model: "gemini-2.0-flash",
-          contents: change,
+          contents: [{ role: "user", parts: [{ text: change }] }],
+          history: history,
         });
-        setResponse(res.text);
+        const reply = await res.response.text();
+        setResponse([...response, reply]);
+        setHistory([
+          ...history,
+          { role: "user", parts: [{ text: change }] },
+          { role: "model", parts: [{ text: reply }] },
+        ]);
+      } else {
+        console.log("please input first");
       }
-      
     } catch (err) {
       console.log(err);
-      setResponse(err);
-    }
-    finally{
+      setResponse([...response, "something went wrong"]);
+      setHistory([
+        ...history,
+        { role: "user", parts: [{ text: change }] },
+        { role: "model", parts: [{ text: "something went wrong" }] },
+      ]);
+    } finally {
       setLoading(false);
     }
   }
   function handleSubmit() {
     setSubmit(!submit);
     main();
+    setChange("");
   }
   return (
     <>
@@ -64,27 +78,27 @@ export default function AiChat() {
       </div>
       {click && (
         <div className="fixed bottom-24 right-6 h-120 w-100 bg-white rounded-3xl flex flex-col z-50 justify-end">
-          <div className="bg-green-800 max-h-screen ">
-            {change != "" && (
-              <textarea
-                value={change}
-                className="border-2 rounded-2xl w-[300px]"
-              ></textarea>
-            )}
-          </div>
-          <div>
-            {response != "" && <textarea value={response} readOnly></textarea>}
-          </div>
-          <div className="flex flex-row ">
-            <Input value={change} onChange={handleChange} />
-            <button
-              className="bg-black hover:bg-blue-800 text-white border-2 rounded-2xl w-md h-12 mt-1.5 "
-              
-              onClick={handleSubmit}
+          {history.map((msg, index) => (
+            <div
+              key={index}
+              className={`p-3 my-2 rounded-lg ${
+                msg.role === "user"
+                  ? "bg-amber-200 text-left"
+                  : "bg-green-400 text-right"
+              }`}
             >
-              {loading ? <Loader /> : "Ask"}
-            </button>
-          </div>
+              <strong>{msg.role === "user" ? "You" : "Gemini"}:</strong>
+              {msg.parts[0].text}
+            </div>
+          ))}
+
+          <Input value={change} onChange={handleChange} />
+          <button
+            className="bg-black hover:bg-blue-800 text-white border-2 rounded-2xl w-md h-12 mt-1.5 "
+            onClick={handleSubmit}
+          >
+            {loading ? <Loader /> : "Ask"}
+          </button>
         </div>
       )}
     </>

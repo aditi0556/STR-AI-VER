@@ -36,7 +36,7 @@ export default function Debug() {
       if (checkRes.text) {
         const prompt = `This is my code ${input}.Debug it ,tell me the errors and give me the correct code.`;
         const res = await ai.models.generateContent({
-          model: "gemini-2.5-flash",
+          model: "gemini-2.0-flash",
           contents: prompt,
         });
         const ans = res.text;
@@ -98,7 +98,7 @@ export default function Debug() {
                       onClick={handleClick}
                       className="bg-blue-500 hover:size-lg hover:bg-blue-700 mx-1 text-white size-md"
                     >
-                      {loading ? <Loader /> : "Show Hints"}
+                      {loading ? <Loader /> : "Debug"}
                     </Button>
                   </div>
                 </ResizablePanel>
