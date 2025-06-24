@@ -1,10 +1,7 @@
 import React from "react";
 import { cn } from "@/lib/utils";
-import { Spotlight } from "@/components/ui/spotlight";
+import { Spotlight } from "@/components/ui/Spotlight.jsx";
 // import CarouselDemo from "./Home Page/CarouselDemo";
-import { VideoText } from "@/components/magicui/video-text";
-import { FlipText } from "@/components/magicui/flip-text";
-import Timeline from "./Timeline.jsx";
 export default function Background() {
   return (
     <>
@@ -50,4 +47,3 @@ export default function Background() {
     </>
   );
 }
-

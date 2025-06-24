@@ -7,9 +7,6 @@ import {
   MenubarShortcut,
   MenubarTrigger,
 } from "@/components/ui/menubar";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMoon } from "@fortawesome/free-solid-svg-icons";
-import { faSun } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import { Menu } from "lucide-react";
 import {
@@ -22,7 +19,6 @@ import {
 } from "@clerk/clerk-react";
 import { useNavigate } from "react-router-dom";
 import { HashLink as Link } from "react-router-hash-link";
-import Switch from "./Switch.jsx";
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [toggle, setToggle] = useState(false);

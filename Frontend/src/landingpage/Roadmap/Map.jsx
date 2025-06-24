@@ -1,6 +1,6 @@
 import Timeline from "../Timeline.jsx";
 import { cn } from "@/lib/utils";
-import { Spotlight } from "@/components/ui/spotlight";
+import { Spotlight } from "@/components/ui/Spotlight.jsx";
 import { FlipText } from "@/components/magicui/flip-text";
 import Navbar from "../Navbar.jsx";
 import Footer from "../Home Page/Footer.jsx";
