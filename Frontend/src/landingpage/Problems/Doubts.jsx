@@ -1,29 +1,29 @@
 "use client";
 import { TypewriterEffectSmooth } from "@/components/ui/typewriter-effect";
-import  Navbar  from "../Navbar.jsx";
+import Navbar from "../Navbar.jsx";
 import { Spotlight } from "@/components/ui/Spotlight.jsx";
 import { cn } from "@/lib/utils";
-import Footer from "../Home Page/Footer.jsx"
-import { Navigate, useNavigate } from 'react-router-dom';
+import Footer from "../Home Page/Footer.jsx";
+import { Navigate, useNavigate } from "react-router-dom";
 
 export default function Doubts() {
-    const navigate=useNavigate();
+  const navigate = useNavigate();
   const words = [
     {
       text: "Resolve\u00A0",
-      className:"text-white"
+      className: "text-white",
     },
     {
       text: "My\u00A0 ",
-      className:"text-white"
+      className: "text-white",
     },
     {
       text: "Code\u00A0",
-      className:"text-white"
+      className: "text-white",
     },
     {
-      text:"Problems\u00A0",
-      className:"text-white"
+      text: "Problems\u00A0",
+      className: "text-white",
     },
     {
       text: "STR-AI-VER.",
