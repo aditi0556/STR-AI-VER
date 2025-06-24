@@ -23,7 +23,7 @@ export default function AiChat() {
   }
 
   function handleChange(e) {
-    setChange(e.target.val);
+    setChange(e.target.value);
   }
 
   async function main() {
@@ -32,10 +32,30 @@ export default function AiChat() {
       if (change != "") {
         const res = await ai.models.generateContent({
           model: "gemini-2.0-flash",
-          contents: [{ role: "user", parts: [{ text: change }] }],
+          contents: [
+            {
+              role: "user",
+              parts: [
+                {
+                  text: `${change} (Answer in under 50 words.Also use ' or " inplace of * or **)`,
+                },
+              ],
+            },
+          ],
           history: history,
+          config: {
+            temperature: 0.1,
+            systemInstruction: {
+              role: "system",
+              parts: [
+                {
+                  text: " Your name is Neko.Also answer any question in less than 50 words.Also you are incharge of this website which is called STR-AI-VER.It consists of a Roadmap for DSA where user can start their dsa journey.Any user should Start with arrays and strings. Once you're comfortable, move on to linked lists and recursion. Here's the full roadmap: [/doubts].This website also provides you with a doubt solver where a user can Debug, get Hints,get Solutions and can get Optimised code for their code and problems.Also dont answer any questions apart from STR-AI-VER website and DSA related queries.In such cases give appropriate error. ",
+                },
+              ],
+            },
+          },
         });
-        const reply = await res.response.text();
+        const reply = await res.text;
         setResponse([...response, reply]);
         setHistory([
           ...history,
@@ -77,28 +97,34 @@ export default function AiChat() {
         </button>
       </div>
       {click && (
-        <div className="fixed bottom-24 right-6 h-120 w-100 bg-white rounded-3xl flex flex-col z-50 justify-end">
-          {history.map((msg, index) => (
-            <div
-              key={index}
-              className={`p-3 my-2 rounded-lg ${
-                msg.role === "user"
-                  ? "bg-amber-200 text-left"
-                  : "bg-green-400 text-right"
-              }`}
-            >
-              <strong>{msg.role === "user" ? "You" : "Gemini"}:</strong>
-              {msg.parts[0].text}
-            </div>
-          ))}
+        <div className="fixed bottom-24 right-6 h-120 w-100 bg-white rounded-3xl flex flex-col z-50 justify-end overflow-y-auto">
+          <div class="relative overflow-hidden overflow-y-auto ">
+            {history.map((msg, index) => (
+              <div
+                key={index}
+                className={`p-3 my-2 rounded-lg ${
+                  msg.role === "user"
+                    ? "bg-gray-700 text-white text-left mx-2 w-fit"
+                    : "bg-gray-800 text-white text-right ml-auto mx-2 w-fit max-w-3/4"
+                }`}
+              >
+                <strong>
+                  {msg.role === "user" ? "You" : "Gemini"}:&nbsp;&nbsp;
+                </strong>
+                {msg.parts[0].text}
+              </div>
+            ))}
+          </div>
 
-          <Input value={change} onChange={handleChange} />
-          <button
-            className="bg-black hover:bg-blue-800 text-white border-2 rounded-2xl w-md h-12 mt-1.5 "
-            onClick={handleSubmit}
-          >
-            {loading ? <Loader /> : "Ask"}
-          </button>
+          <div className="flex flex-row ">
+            <Input value={change} onChange={handleChange} />
+            <button
+              className="bg-black  text-white border-2 px-1  mx-2 rounded-2xl w-md h-12 mt-1.5 "
+              onClick={handleSubmit}
+            >
+              {loading ? <Loader /> : "Ask"}
+            </button>
+          </div>
         </div>
       )}
     </>
