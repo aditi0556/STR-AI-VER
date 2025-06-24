@@ -1,7 +1,7 @@
 "use client";
 import { TypewriterEffectSmooth } from "@/components/ui/typewriter-effect";
 import  Navbar  from "../Navbar.jsx";
-import { Spotlight } from "@/components/ui/spotlight";
+import { Spotlight } from "@/components/ui/Spotlight.jsx";
 import { cn } from "@/lib/utils";
 import Footer from "../Home Page/Footer.jsx"
 import { Navigate, useNavigate } from 'react-router-dom';
