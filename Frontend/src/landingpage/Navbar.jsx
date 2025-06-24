@@ -87,7 +87,7 @@ export default function Navbar() {
             <div className="h-15 p-2 hover:bg-gray-800 hover:border-2 rounded-2xl ">
               <button
                 className="lg:flex hover:text-white hover:font-bold drop-shadow-lg hover:text-xl transition-all duration-300"
-                onClick={<SignedIn>{() => navigate("/Doubts")}</SignedIn>}
+                onClick={() => navigate("/Doubts")}
               >
                 Doubts
               </button>
