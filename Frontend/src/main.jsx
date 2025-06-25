@@ -13,7 +13,7 @@ import Privacy from "./landingpage/Privacy.jsx";
 import Terms from "./landingpage/Terms.jsx";
 import SignUpPage from "./SignUpPage.jsx";
 import Map from "./landingpage/Roadmap/Map.jsx";
-
+import AuthOverlay from "./AuthOverlay";
 import { ClerkProvider, RedirectToSignIn, SignIn } from "@clerk/clerk-react";
 import {
   SignedIn,
@@ -39,10 +39,15 @@ createRoot(document.getElementById("root")).render(
         <Route
           path="/"
           element={
-            <SignedIn>
-              <SignUpPage />
-              <Home />
-            </SignedIn>
+            <>
+              <SignedOut>
+                <Home />
+              </SignedOut>
+              <SignedIn>
+                <SignUpPage />
+                <Home />
+              </SignedIn>
+            </>
           }
         />
         <Route path="/privacy" element={<Privacy />} />
@@ -78,11 +83,7 @@ createRoot(document.getElementById("root")).render(
         <Route path="/Doubts/solve" element={<Solve />} />
         <Route path="/Doubts/hints" element={<Hints />} />
       </Routes>
-      <SignedOut>
-        <div className="fixed inset-0 flex flex-row justify-center items-center z-50">
-          <SignIn routing="hash" />
-        </div>
-      </SignedOut>
+      <AuthOverlay />
     </ClerkProvider>
   </Router>
 );

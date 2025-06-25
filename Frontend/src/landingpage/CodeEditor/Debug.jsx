@@ -67,7 +67,7 @@ export default function Debug() {
             Debug Your Code
           </AuroraText>
         </div>
-        <div className="flex flex-col md:flex-col justify-evenly h-[600px] mt-[100px] mx-[20px] mb-[40px]">
+        <div className="flex flex-col  justify-evenly h-[600px] mt-[100px] mx-[20px] mb-[40px]">
           <ResizablePanelGroup
             direction="horizontal"
             className=" max-w-screen  rounded-lg  md:min-w-[450px]   border-4 border-black"
