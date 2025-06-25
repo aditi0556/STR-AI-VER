@@ -97,7 +97,7 @@ export default function AiChat() {
         </button>
       </div>
       {click && (
-        <div className="fixed bottom-24 right-6 h-120 w-100 bg-white rounded-3xl flex flex-col z-50 justify-end overflow-y-auto">
+        <div className="fixed bottom-24 right-6 h-[500px] max-w-[300px] sm:max-w-[400px]  bg-white rounded-3xl flex flex-col z-50 justify-end overflow-y-auto">
           <div class="relative overflow-hidden overflow-y-auto ">
             {history.map((msg, index) => (
               <div
