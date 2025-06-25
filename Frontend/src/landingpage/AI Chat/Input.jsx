@@ -5,7 +5,7 @@ const Input = ({ value, onChange }) => {
   return (
     <StyledWrapper className="m-2">
       <input
-        placeholder="Type something here...."
+        placeholder="Ask Your Doubts Here...."
         className="input "
         name="text"
         type="text"

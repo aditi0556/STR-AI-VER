@@ -24,6 +24,7 @@ export default function Solve() {
   }
 
   async function handleClick() {
+    setResponse("");
     setLoading(true);
     try {
       if (input == "" || selectedLanguage == "")

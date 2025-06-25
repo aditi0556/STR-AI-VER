@@ -25,6 +25,7 @@ export default function Debug() {
   }
 
   async function handleClick() {
+    setResponse("");
     setLoading(true);
     try {
       const check = `This is my ${input}.Return in true or false whether this is a code which can be debugged`;

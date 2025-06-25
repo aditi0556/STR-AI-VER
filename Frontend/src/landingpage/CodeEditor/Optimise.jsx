@@ -23,6 +23,7 @@ export default function Optimise() {
   }
 
   async function handleClick() {
+    setResponse("");
     setLoading(true);
     try {
       if (input == "") throw new error("Please enter a code to optimise");
