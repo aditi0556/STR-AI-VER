@@ -1,13 +1,8 @@
-"use client";;
+"use client";
 import { IconArrowNarrowRight } from "@tabler/icons-react";
 import { useState, useRef, useId, useEffect } from "react";
 
-const Slide = ({
-  slide,
-  index,
-  current,
-  handleSlideClick
-}) => {
+const Slide = ({ slide, index, current, handleSlideClick }) => {
   const slideRef = useRef(null);
 
   const xRef = useRef(0);
@@ -71,7 +66,8 @@ const Slide = ({
               : "scale(1) rotateX(0deg)",
           transition: "transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
           transformOrigin: "bottom",
-        }}>
+        }}
+      >
         <div
           className="absolute top-0 left-0 w-full h-full bg-[#1D1F2F] rounded-[1%] overflow-hidden transition-all duration-150 ease-out rounded-[30px]"
           style={{
@@ -79,7 +75,8 @@ const Slide = ({
               current === index
                 ? "translate3d(calc(var(--x) / 30), calc(var(--y) / 30), 0)"
                 : "none",
-          }}>
+          }}
+        >
           <img
             className="absolute inset-0 w-[120%] h-[120%] object-cover opacity-100 transition-opacity duration-600 ease-in-out"
             style={{
@@ -89,7 +86,8 @@ const Slide = ({
             src={src}
             onLoad={imageLoaded}
             loading="eager"
-            decoding="sync" />
+            decoding="sync"
+          />
           {current === index && (
             <div className="absolute inset-0 bg-black/30 transition-all duration-1000" />
           )}
@@ -98,7 +96,8 @@ const Slide = ({
         <article
           className={`relative p-[4vmin] transition-opacity duration-1000 ease-in-out ${
             current === index ? "opacity-100 visible" : "opacity-0 invisible"
-          }`}>
+          }`}
+        >
           <h2 className="text-lg md:text-2xl lg:text-4xl font-semibold  relative">
             {title}
           </h2>
@@ -114,26 +113,21 @@ const Slide = ({
   );
 };
 
-const CarouselControl = ({
-  type,
-  title,
-  handleClick
-}) => {
+const CarouselControl = ({ type, title, handleClick }) => {
   return (
     <button
       className={`w-10 h-10 flex items-center mx-2 justify-center bg-neutral-200 dark:bg-neutral-800 border-3 border-transparent rounded-full focus:border-[#6D64F7] focus:outline-none hover:-translate-y-0.5 active:translate-y-0.5 transition duration-200 ${
         type === "previous" ? "rotate-180" : ""
       }`}
       title={title}
-      onClick={handleClick}>
+      onClick={handleClick}
+    >
       <IconArrowNarrowRight className="text-neutral-600 dark:text-neutral-200" />
     </button>
   );
 };
 
-export default function Carousel({
-  slides
-}) {
+export default function Carousel({ slides }) {
   const [current, setCurrent] = useState(1);
 
   const handlePreviousClick = () => {
@@ -157,28 +151,36 @@ export default function Carousel({
   return (
     <div
       className="relative w-[70vmin] h-[70vmin] mx-auto"
-      aria-labelledby={`carousel-heading-${id}`}>
+      aria-labelledby={`carousel-heading-${id}`}
+    >
       <ul
         className="absolute flex mx-[-4vmin] transition-transform duration-1000 ease-in-out"
         style={{
           transform: `translateX(-${current * (100 / slides.length)}%)`,
-        }}>
+        }}
+      >
         {slides.map((slide, index) => (
           <Slide
             key={index}
             slide={slide}
             index={index}
             current={current}
-            handleSlideClick={handleSlideClick} />
+            handleSlideClick={handleSlideClick}
+          />
         ))}
       </ul>
       <div className="absolute flex justify-center w-full top-[calc(100%+1rem)]">
         <CarouselControl
           type="previous"
           title="Go to previous slide"
-          handleClick={handlePreviousClick} />
+          handleClick={handlePreviousClick}
+        />
 
-        <CarouselControl type="next" title="Go to next slide" handleClick={handleNextClick} />
+        <CarouselControl
+          type="next"
+          title="Go to next slide"
+          handleClick={handleNextClick}
+        />
       </div>
     </div>
   );
