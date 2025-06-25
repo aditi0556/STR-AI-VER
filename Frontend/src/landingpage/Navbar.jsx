@@ -74,7 +74,12 @@ export default function Navbar() {
         {open && (
           <div className=" px-4 flex flex-col justify-items-start  w-screen bg-black text-lg font-bold text-white z-40 fixed top-2">
             <div className="h-15 p-2 hover:bg-gray-800 hover:border-2 rounded-2xl">
-              <UserButton />{" "}
+              <SignedIn>
+                <UserButton />
+              </SignedIn>
+              <SignedOut>
+                <SignInButton />
+              </SignedOut>
             </div>
             <div className="h-15 p-2 hover:bg-gray-800 hover:border-2  rounded-2xl">
               <button className=" lg:flex hover:text-white hover:font-bold drop-shadow-lg hover:text-xl transition-all duration-300">
@@ -98,6 +103,7 @@ export default function Navbar() {
               </Link>
               {/* <a href="/#rdMap">RoadMap</a> */}
             </div>
+            <div></div>
             {/* <div className="h-15 p-2 hover:bg-gray-800 hover:border-2 rounded-2xl ">
               <FontAwesomeIcon icon={faMoon} />
             </div> */}

@@ -56,9 +56,9 @@ createRoot(document.getElementById("root")).render(
           path="/Doubts"
           element={
             <>
-              <SignedOut>
+              {/* <SignedOut>
                 <RedirectToSignIn />
-              </SignedOut>
+              </SignedOut> */}
               <SignedIn>
                 <Doubts />
               </SignedIn>
@@ -69,9 +69,9 @@ createRoot(document.getElementById("root")).render(
           path="/map"
           element={
             <>
-              <SignedOut>
+              {/* <SignedOut>
                 <RedirectToSignIn />
-              </SignedOut>
+              </SignedOut> */}
               <SignedIn>
                 <Map />
               </SignedIn>
