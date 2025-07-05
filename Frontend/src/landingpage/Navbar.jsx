@@ -117,12 +117,13 @@ export default function Navbar() {
             Doubts
           </button>
         </MenubarMenu>
-        &nbsp;
-        {/* <MenubarMenu>
-          <MenubarTrigger className=" hidden lg:flex hover:text-white hover:font-bold drop-shadow-lg hover:text-lg transition-all duration-300">
+        &nbsp; ?{" "}
+         <MenubarMenu>
+          <MenubarTrigger className=" hidden lg:flex hover:text-white hover:font-bold drop-shadow-lg hover:text-lg transition-all duration-300"
+          onClick={()=> navigate("/Discuss")}>
             Discuss
           </MenubarTrigger>
-        </MenubarMenu> */}
+        </MenubarMenu> 
         {/* <MenubarMenu >  
          <MenubarTrigger className=" hidden lg:flex ml-auto hover:text-white hover:font-bold hover:text-larger drop-shadow-2xl transition-all duration-300"> 
          <CircleUserRound size={30} absoluteStrokeWidth={true} strokeWidth={3.0}/> &nbsp;&nbsp;
