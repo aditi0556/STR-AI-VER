@@ -19,6 +19,7 @@ import {
 } from "@clerk/clerk-react";
 import { useNavigate } from "react-router-dom";
 import { HashLink as Link } from "react-router-hash-link";
+import SignUpPage from "../SignUpPage.jsx"
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [toggle, setToggle] = useState(false);
@@ -117,10 +118,10 @@ export default function Navbar() {
             Doubts
           </button>
         </MenubarMenu>
-        &nbsp; ?{" "}
+        &nbsp;
          <MenubarMenu>
           <MenubarTrigger className=" hidden lg:flex hover:text-white hover:font-bold drop-shadow-lg hover:text-lg transition-all duration-300"
-          onClick={()=> navigate("/Discuss")}>
+          onClick={()=> navigate("/discuss")}>
             Discuss
           </MenubarTrigger>
         </MenubarMenu> 
@@ -156,9 +157,11 @@ export default function Navbar() {
           <header className="hidden lg:flex font-bold hover:text-larger  hover:font-bold hover:text-larger drop-shadow-2xl transition-all duration-300 ml-auto">
             <SignedIn>
               <UserButton />
+              <SignUpPage/>
             </SignedIn>
             <SignedOut>
               <SignInButton />
+              <SignUpPage/>
             </SignedOut>
           </header>
         </MenubarMenu>

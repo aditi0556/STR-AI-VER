@@ -1,21 +1,25 @@
 import traceback
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException,status
 from sqlmodel import Session, select
-from ..models.Users import UserRead,Users
-from ..db import get_session
+from models.Users import Users
+from db import get_session
 from fastapi import Depends
 
 router = APIRouter(prefix="/users", tags=["users"])
 
-@router.post("/adduser", response_model=Users)
-def create_user(user: UserRead,session: Session = Depends(get_session)):
+@router.post("/add",response_model=Users)
+def create_user(user: Users,session: Session = Depends(get_session)):
    
     try:
-        session.add(user)
-        session.commit()
-        print("commited",flush=True)
-        session.refresh(user)
-        return "aditi"
+        result =session.exec(select(Users).where(Users.user_id==user.user_id)).all()
+        if not result:
+            session.add(user)
+            print("successfull",flush=True)
+            session.commit()
+            return user
+        else:
+            raise HTTPException(status_code=500,detail="user already exists")
+
     except Exception as e:
         print("Error:", traceback.format_exc())
         print("meow",flush=True)

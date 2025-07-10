@@ -13,7 +13,10 @@ import Privacy from "./landingpage/Privacy.jsx";
 import Terms from "./landingpage/Terms.jsx";
 import SignUpPage from "./SignUpPage.jsx";
 import Map from "./landingpage/Roadmap/Map.jsx";
-import AuthOverlay from "./AuthOverlay";
+import Ask from "./landingpage/Discuss/Ask.jsx"
+import Q_desc from "./landingpage/Discuss/Q_desc.jsx"
+import Q_search from "./landingpage/Discuss/Q_search.jsx";
+import Add from "./landingpage/Discuss/Add.jsx"
 import { ClerkProvider, RedirectToSignIn, SignIn } from "@clerk/clerk-react";
 import {
   SignedIn,
@@ -36,19 +39,16 @@ createRoot(document.getElementById("root")).render(
     <ClerkProvider publishableKey={PUBLISHABLE_KEY} afterSignOutUrl="/">
       {/* <ClerkProvider afterSignOutUrl="/"> */}
       <Routes>
+        <Route path="/discuss" element={<Ask />} />
+        <Route path="/search" element={<Q_search />} />
+        <Route path="/questions/getall/:q_id" element={<Q_desc />} />
+        <Route path="/Doubts/debug" element={<Debug />} />
+        <Route path="/Doubts/optimise" element={<Optimise />} />
+        <Route path="/Doubts/solve" element={<Solve />} />
+        <Route path="/Doubts/hints" element={<Hints />} />
         <Route
           path="/"
-          element={
-            <>
-              <SignedOut>
-                <Home />
-              </SignedOut>
-              <SignedIn>
-                <SignUpPage />
-                <Home />
-              </SignedIn>
-            </>
-          }
+          element={<><Home/></>}
         />
         <Route path="/privacy" element={<Privacy />} />
         <Route path="/terms" element={<Terms />} />
@@ -56,35 +56,19 @@ createRoot(document.getElementById("root")).render(
           path="/Doubts"
           element={
             <>
-              {/* <SignedOut>
+              <SignedOut>
                 <RedirectToSignIn />
-              </SignedOut> */}
+              </SignedOut>
               <SignedIn>
+                <SignUpPage />
                 <Doubts />
               </SignedIn>
             </>
           }
         />
-        
-        <Route
-          path="/map"
-          element={
-            <>
-              {/* <SignedOut>
-                <RedirectToSignIn />
-              </SignedOut> */}
-              <SignedIn>
-                <Map />
-              </SignedIn>
-            </>
-          }
-        />
-        <Route path="/Doubts/debug" element={<Debug />} />
-        <Route path="/Doubts/optimise" element={<Optimise />} />
-        <Route path="/Doubts/solve" element={<Solve />} />
-        <Route path="/Doubts/hints" element={<Hints />} />
+        <Route path="/addquestion" element={<Add/>}/>
+        <Route path="/map" element={<Map />} />
       </Routes>
-      <AuthOverlay />
     </ClerkProvider>
   </Router>
 );
