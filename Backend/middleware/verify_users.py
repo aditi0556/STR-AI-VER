@@ -8,6 +8,4 @@ async def verify_users(request:Request):
     token=res.split(" ")[1]
     print(token,flush=True)
     user=await verify_clerk_token(token)
-    print(user,flush=True)
-   
     return user

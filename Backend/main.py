@@ -8,6 +8,7 @@ from pydantic import BaseModel, Field
 from sqlmodel import SQLModel,Session,select
 from routes.questions import router as questions_router
 from routes.users import router as users_router
+from routes.answers import router as answers_router
 from db import create_db_and_tables,get_session
 from models import questions
 from contextlib import asynccontextmanager
@@ -41,6 +42,7 @@ clerk_client=Clerk(bearer_auth="sk_test_uzkaZm7goNKozy7wWtzIfejQg2ucUZzvPcmPLlbu
 templates = Jinja2Templates(directory="templates")
 app.include_router(questions_router)
 app.include_router(users_router)
+app.include_router(answers_router)
 
 @app.get("/home",response_class=HTMLResponse)
 async def get_user(request:Request):

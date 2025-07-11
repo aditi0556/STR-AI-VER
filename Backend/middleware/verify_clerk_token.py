@@ -30,7 +30,7 @@ async def verify_clerk_token(token:str):
    try:
         jwks_client = PyJWKClient(CLERK_JWKS_URL)
         signing_key = jwks_client.get_signing_key_from_jwt(token)
-        print(signing_key,flush=True)
+        
         payload = jwt.decode(
             token,
             signing_key.key,
