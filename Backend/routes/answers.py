@@ -15,6 +15,22 @@ class ans(BaseModel):
     user_name:str
     desc:str
 
+@router.patch("/update/{id}")
+async def update_ans(id:str,ans:dict,user=Depends(verify_users),credentials:HTTPAuthorizationCredentials=Depends(security),session:Session=Depends(get_session)):
+    res=session.exec(select(Answers).where(Answers.answer_id==id )).one()
+    res.desc=ans["ans"]
+    session.add(res)
+    session.commit()
+    if not res:
+        raise HTTPException(status_code=401,detail="not")
+    return res
+
+
+@router.get("/user")
+async def get_user_answers(user=Depends(verify_users),credentials: HTTPAuthorizationCredentials = Depends(security),session:Session=Depends(get_session)):
+    res=session.exec(select(Answers).where(Answers.answer_username==user["username"])).all()
+    return res
+
 @router.post("/create",response_model=ans)
 async def create_answer(ans:dict,user=Depends(verify_users),session:Session=Depends(get_session)):
     print(ans,flush=True)

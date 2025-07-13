@@ -1,6 +1,6 @@
 from datetime import datetime
 from typing import List
-from fastapi import APIRouter, Depends, HTTPException, Request
+from fastapi import APIRouter, Depends, HTTPException, Request,status
 from pydantic import BaseModel, Field
 from sqlmodel import Session, select
 from middleware.verify_users import verify_users
@@ -20,7 +20,6 @@ class quest(BaseModel):
 @router.get("/getall")
 async def get_all_questions(request:Request,session:Session=Depends(get_session))->list:
     result=session.exec(select(questions)).all()
-    print("aditi",flush=True)
     print(request.headers.get("Authorization"),flush=True)
     return result
 
@@ -50,3 +49,15 @@ async def add_question(data:newQs,user=Depends(verify_users),credentials: HTTPAu
     session.add(quest)
     session.commit()
     return quest
+
+@router.patch("/update/{id}")
+async def update_qs(title:str,q_desc:str,id:str,user=Depends(verify_users),credentials:HTTPAuthorizationCredentials=Depends(security),session:Session=Depends(get_session)):
+    res=await session.exec(select(questions).where(questions.q_id==id))
+    if res.user_id==user["user_id"]:
+        res.title=title
+        res.q_desc=q_desc
+        session.add(res)
+        session.commit()
+    else:
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,detail="not authorised to edit")   
+    return "working" 

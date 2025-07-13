@@ -16,7 +16,9 @@ import Map from "./landingpage/Roadmap/Map.jsx";
 import Ask from "./landingpage/Discuss/Ask.jsx"
 import Q_desc from "./landingpage/Discuss/Q_desc.jsx"
 import Q_search from "./landingpage/Discuss/Q_search.jsx";
+import Answered from "./landingpage/Discuss/Answered.jsx";
 import Add from "./landingpage/Discuss/Add.jsx"
+import Update_ans from "./landingpage/Discuss/Update_ans.jsx"
 import { ClerkProvider, RedirectToSignIn, SignIn } from "@clerk/clerk-react";
 import {
   SignedIn,
@@ -46,9 +48,15 @@ createRoot(document.getElementById("root")).render(
         <Route path="/Doubts/optimise" element={<Optimise />} />
         <Route path="/Doubts/solve" element={<Solve />} />
         <Route path="/Doubts/hints" element={<Hints />} />
+        <Route path="/answered" element={<Answered />} />
+        <Route path="/edit/:answer_id" element={<Update_ans/>} />
         <Route
           path="/"
-          element={<><Home/></>}
+          element={
+            <>
+              <Home />
+            </>
+          }
         />
         <Route path="/privacy" element={<Privacy />} />
         <Route path="/terms" element={<Terms />} />
@@ -66,7 +74,7 @@ createRoot(document.getElementById("root")).render(
             </>
           }
         />
-        <Route path="/addquestion" element={<Add/>}/>
+        <Route path="/addquestion" element={<Add />} />
         <Route path="/map" element={<Map />} />
       </Routes>
     </ClerkProvider>
