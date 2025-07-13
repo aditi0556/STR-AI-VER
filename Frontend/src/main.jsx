@@ -19,6 +19,7 @@ import Q_search from "./landingpage/Discuss/Q_search.jsx";
 import Answered from "./landingpage/Discuss/Answered.jsx";
 import Add from "./landingpage/Discuss/Add.jsx"
 import Update_ans from "./landingpage/Discuss/Update_ans.jsx"
+import Questions_asked from "./landingpage/Discuss/Questions_asked.jsx";
 import { ClerkProvider, RedirectToSignIn, SignIn } from "@clerk/clerk-react";
 import {
   SignedIn,
@@ -43,13 +44,14 @@ createRoot(document.getElementById("root")).render(
       <Routes>
         <Route path="/discuss" element={<Ask />} />
         <Route path="/search" element={<Q_search />} />
+        <Route path="/asked" element={<Questions_asked />} />
         <Route path="/questions/getall/:q_id" element={<Q_desc />} />
         <Route path="/Doubts/debug" element={<Debug />} />
         <Route path="/Doubts/optimise" element={<Optimise />} />
         <Route path="/Doubts/solve" element={<Solve />} />
         <Route path="/Doubts/hints" element={<Hints />} />
         <Route path="/answered" element={<Answered />} />
-        <Route path="/edit/:answer_id" element={<Update_ans/>} />
+        <Route path="/edit/:answer_id" element={<Update_ans />} />
         <Route
           path="/"
           element={

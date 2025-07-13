@@ -99,6 +99,14 @@ export default function Navbar() {
               </button>
             </div>
             <div className="h-15 p-2 hover:bg-gray-800 hover:border-2 rounded-2xl ">
+              <button
+                className="lg:flex hover:text-white hover:font-bold drop-shadow-lg hover:text-xl transition-all duration-300"
+                onClick={() => navigate("/discuss")}
+              >
+                Discuss
+              </button>
+            </div>
+            <div className="h-15 p-2 hover:bg-gray-800 hover:border-2 rounded-2xl ">
               <Link smooth to="/map">
                 RoadMap
               </Link>
@@ -119,12 +127,14 @@ export default function Navbar() {
           </button>
         </MenubarMenu>
         &nbsp;
-         <MenubarMenu>
-          <MenubarTrigger className=" hidden lg:flex hover:text-white hover:font-bold drop-shadow-lg hover:text-lg transition-all duration-300"
-          onClick={()=> navigate("/discuss")}>
+        <MenubarMenu>
+          <MenubarTrigger
+            className=" hidden lg:flex hover:text-white hover:font-bold drop-shadow-lg hover:text-lg transition-all duration-300"
+            onClick={() => navigate("/discuss")}
+          >
             Discuss
           </MenubarTrigger>
-        </MenubarMenu> 
+        </MenubarMenu>
         {/* <MenubarMenu >  
          <MenubarTrigger className=" hidden lg:flex ml-auto hover:text-white hover:font-bold hover:text-larger drop-shadow-2xl transition-all duration-300"> 
          <CircleUserRound size={30} absoluteStrokeWidth={true} strokeWidth={3.0}/> &nbsp;&nbsp;
@@ -157,11 +167,11 @@ export default function Navbar() {
           <header className="hidden lg:flex font-bold hover:text-larger  hover:font-bold hover:text-larger drop-shadow-2xl transition-all duration-300 ml-auto">
             <SignedIn>
               <UserButton />
-              <SignUpPage/>
+              <SignUpPage />
             </SignedIn>
             <SignedOut>
               <SignInButton />
-              <SignUpPage/>
+              <SignUpPage />
             </SignedOut>
           </header>
         </MenubarMenu>

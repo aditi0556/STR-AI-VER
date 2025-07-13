@@ -50,7 +50,10 @@ export default function Answered(){
                       Edit
                     </button>
                     &nbsp;&nbsp;
-                    <button className="border-2 border-black hover:scale-110 rounded-2xl md:w-30 w-20 h-10 bg-blue-800 text-white ">
+                    <button
+                      className="border-2 border-black hover:scale-110 rounded-2xl md:w-30 w-20 h-10 bg-blue-800 text-white "
+                      
+                    >
                       Delete
                     </button>
                   </div>
@@ -59,7 +62,11 @@ export default function Answered(){
               ))}
             </div>
           </div>
-          {!sign && <h1 className="text-white text-2xl mx-5 font-bold">You have no answers posted.</h1>}
+          {!sign && (
+            <h1 className="text-white text-2xl mx-5 font-bold">
+              You have no answers posted.
+            </h1>
+          )}
         </div>
       </>
     );

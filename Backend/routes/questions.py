@@ -17,6 +17,12 @@ class quest(BaseModel):
     created_at:datetime
 
 
+@router.get("/posts")
+async def get_posts(session:Session=Depends(get_session),user=Depends(verify_users),credentials:HTTPAuthorizationCredentials=Depends(security)):
+    res=session.exec(select(questions).where(questions.user_id==user["user_id"])).all()
+    print(res,flush=True)
+    return res
+
 @router.get("/getall")
 async def get_all_questions(request:Request,session:Session=Depends(get_session))->list:
     result=session.exec(select(questions)).all()
@@ -61,3 +67,13 @@ async def update_qs(title:str,q_desc:str,id:str,user=Depends(verify_users),crede
     else:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,detail="not authorised to edit")   
     return "working" 
+
+@router.delete("/delete/{id}")
+async def delete_qs(id:str,user=Depends(verify_users),credentials:HTTPAuthorizationCredentials=Depends(security),session:Session=Depends(get_session)):
+    res=session.exec(select(questions).where(questions.q_id==id)).one()
+    if res.user_id==user["user_id"]:
+        session.delete(res)
+        session.commit()
+        return "deleted successfully"
+    else:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,details="not authorized to delete")

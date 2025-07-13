@@ -12,7 +12,10 @@ export default function Sidebar(){
           >
             Ask
           </h1>
-          <h1 className="hover:border-2 hover:rounded-xl p-2.5 hover:bg-gray-900 text-white text-xl my-1.5">
+          <h1
+            className="hover:border-2 hover:rounded-xl p-2.5 hover:bg-gray-900 text-white text-xl my-1.5"
+            onClick={() => navigate("/asked")}
+          >
             Questions Asked
           </h1>
           <h1
